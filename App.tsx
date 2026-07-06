@@ -8,6 +8,8 @@ import { HomePage } from './pages/HomePage';
 import { ProductPage } from './pages/ProductPage';
 import { AdminPage } from './pages/AdminPage';
 import { CheckoutPage } from './pages/CheckoutPage';
+import { OrderConfirmationPage } from './pages/OrderConfirmationPage';
+import { LearnMorePage } from './pages/LearnMorePage';
 
 const AppContent: React.FC = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -22,6 +24,8 @@ const AppContent: React.FC = () => {
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/order-confirmation/:orderId" element={<OrderConfirmationPage />} />
+        <Route path="/learn-more" element={<LearnMorePage />} />
       </Routes>
     </div>
   );

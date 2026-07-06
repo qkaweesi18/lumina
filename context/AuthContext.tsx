@@ -9,9 +9,13 @@ import {
 } from 'firebase/auth';
 import { auth, googleProvider } from '../firebase';
 
+// Admin email — only this email can access the Seller Dashboard
+const ADMIN_EMAIL = 'qkaweesi18@gmail.com';
+
 interface AuthContextType {
     user: User | null;
     loading: boolean;
+    isAdmin: boolean;
     signInWithGoogle: () => Promise<void>;
     loginWithEmail: (email: string, password: string) => Promise<void>;
     signupWithEmail: (email: string, password: string) => Promise<void>;
@@ -26,6 +30,9 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
     const [isDemoUser, setIsDemoUser] = useState(false);
+
+    // Check if current user is admin
+    const isAdmin = user?.email === ADMIN_EMAIL || isDemoUser;
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -96,6 +103,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         <AuthContext.Provider value={{
             user,
             loading,
+            isAdmin,
             signInWithGoogle,
             loginWithEmail,
             signupWithEmail,

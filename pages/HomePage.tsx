@@ -1,7 +1,8 @@
 import React, { useState, useMemo, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useShop } from '../context/ShopContext';
 import { ProductCard } from '../components/ProductCard';
-import { Search, SlidersHorizontal, ArrowRight, Sparkles, Package, Truck, Shield, Instagram, Twitter, Facebook } from 'lucide-react';
+import { Search, SlidersHorizontal, ArrowRight, Sparkles, Package, Truck, Shield, Globe, MessageCircle, Mail } from 'lucide-react';
 import { Product } from '../types';
 
 export const HomePage: React.FC = () => {
@@ -52,7 +53,7 @@ export const HomePage: React.FC = () => {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-sm mb-6 border border-white/20 animate-fade-in-down">
             <Sparkles className="w-4 h-4 text-blue-400" />
-            <span className="text-gray-200">New Collection 2024</span>
+            <span className="text-gray-200">New Collection 2026</span>
           </div>
 
           <h1 className="text-5xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl mb-6 animate-fade-in-up">
@@ -72,12 +73,12 @@ export const HomePage: React.FC = () => {
               Explore Collection
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </a>
-            <a
-              href="#features"
+            <Link
+              to="/learn-more"
               className="inline-flex items-center justify-center gap-2 bg-transparent border border-white/30 text-white px-8 py-4 rounded-full font-medium hover:bg-white/10 transition-all backdrop-blur-sm"
             >
               Learn More
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -202,7 +203,7 @@ export const HomePage: React.FC = () => {
                 creating products that are built to last and designed to inspire.
               </p>
               <div className="flex gap-4">
-                {[Instagram, Twitter, Facebook].map((Icon, i) => (
+                {[Globe, MessageCircle, Mail].map((Icon, i) => (
                   <a
                     key={i}
                     href="#"
@@ -237,7 +238,7 @@ export const HomePage: React.FC = () => {
           </div>
 
           <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-400 text-sm">© 2024 Lumina Store. All rights reserved.</p>
+            <p className="text-gray-400 text-sm">© 2026 Lumina Store. All rights reserved.</p>
             <div className="flex gap-6 text-sm text-gray-400">
               <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
               <a href="#" className="hover:text-white transition-colors">Terms of Service</a>

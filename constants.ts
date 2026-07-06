@@ -82,7 +82,13 @@ export const INITIAL_PRODUCTS: Product[] = [
     name: 'Linen Bed Sheets',
     price: 150,
     description: 'Breathable, stone-washed linen that gets softer with every wash. Cool in summer, warm in winter.',
-    image: 'https://picsum.photos/id/152/800/800',
+    image: 'https://images.unsplash.com/photo-1616627547584-bf28cee262db?w=800&h=800&fit=crop',
+    images: [
+      'https://images.unsplash.com/photo-1616627547584-bf28cee262db?w=800&h=800&fit=crop',
+      'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800&h=800&fit=crop',
+      'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&h=800&fit=crop',
+      'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&h=800&fit=crop'
+    ],
     category: 'Home',
     reviews: [
       {

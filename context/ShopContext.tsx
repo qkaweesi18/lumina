@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { Product, CartItem, Order, Review } from '../types';
+import { Product, CartItem, Order, Review, OrderCustomer, PaymentMethod, PaymentStatus } from '../types';
 import { INITIAL_PRODUCTS } from '../constants';
 
 interface ShopContextType {
@@ -9,12 +9,14 @@ interface ShopContextType {
   orders: Order[];
   toggleAdminMode: () => void;
   addProduct: (product: Product) => void;
+  updateProduct: (id: string, updates: Partial<Product>) => void;
   deleteProduct: (id: string) => void;
   addToCart: (product: Product) => void;
   removeFromCart: (id: string) => void;
   updateQuantity: (id: string, delta: number) => void;
   clearCart: () => void;
-  placeOrder: (customerDetails: Order['customer']) => void;
+  placeOrder: (customer: OrderCustomer, paymentMethod: PaymentMethod, paymentStatus?: PaymentStatus, isGuest?: boolean) => void;
+  updateOrderStatus: (orderId: string, status: PaymentStatus) => void;
   addReview: (productId: string, review: Review) => void;
   cartTotal: number;
   cartCount: number;
@@ -59,9 +61,12 @@ export const ShopProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setProducts(prev => [product, ...prev]);
   };
 
+  const updateProduct = (id: string, updates: Partial<Product>) => {
+    setProducts(prev => prev.map(p => p.id === id ? { ...p, ...updates } : p));
+  };
+
   const deleteProduct = (id: string) => {
     setProducts(prev => prev.filter(p => p.id !== id));
-    // Also remove from cart if present to prevent errors
     setCart(prev => prev.filter(item => item.id !== id));
   };
 
@@ -93,16 +98,25 @@ export const ShopProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const clearCart = () => setCart([]);
 
-  const placeOrder = (customer: Order['customer']) => {
+  const placeOrder = (
+    customer: OrderCustomer,
+    paymentMethod: PaymentMethod,
+    paymentStatus: PaymentStatus = 'pending',
+    isGuest: boolean = true
+  ) => {
     const newOrder: Order = {
       id: Math.random().toString(36).substr(2, 9),
       items: [...cart],
       total: cart.reduce((acc, item) => acc + (item.price * item.quantity), 0),
       date: new Date().toISOString(),
-      customer
+      customer,
+      paymentMethod,
+      paymentStatus,
+      isGuest
     };
     setOrders(prev => [newOrder, ...prev]);
     clearCart();
+    return newOrder;
   };
 
   const addReview = (productId: string, review: Review) => {
@@ -112,6 +126,12 @@ export const ShopProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       }
       return p;
     }));
+  };
+
+  const updateOrderStatus = (orderId: string, status: PaymentStatus) => {
+    setOrders(prev => prev.map(order =>
+      order.id === orderId ? { ...order, paymentStatus: status } : order
+    ));
   };
 
   const cartTotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
@@ -125,12 +145,14 @@ export const ShopProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       orders,
       toggleAdminMode,
       addProduct,
+      updateProduct,
       deleteProduct,
       addToCart,
       removeFromCart,
       updateQuantity,
       clearCart,
       placeOrder,
+      updateOrderStatus,
       addReview,
       cartTotal,
       cartCount

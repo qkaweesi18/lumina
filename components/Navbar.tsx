@@ -77,12 +77,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCart }) => {
 
               <button
                 onClick={() => {
-                  toggleAdminMode();
-                  if (!isAdminMode) {
-                    navigate('/admin');
-                  } else {
-                    navigate('/');
-                  }
+                  navigate('/admin');
                 }}
                 className={`flex items-center gap-2 text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 ${(scrolled || location.pathname !== '/')
                     ? (isAdminMode ? 'text-blue-600' : 'text-gray-600 hover:text-black')
@@ -217,13 +212,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCart }) => {
 
             <button
               onClick={() => {
-                toggleAdminMode();
                 setIsMobileMenuOpen(false);
-                if (!isAdminMode) {
-                  navigate('/admin');
-                } else {
-                  navigate('/');
-                }
+                navigate('/admin');
               }}
               className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium text-gray-700 hover:text-black hover:bg-gray-50 transition-all"
             >
