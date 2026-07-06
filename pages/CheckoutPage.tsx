@@ -497,7 +497,7 @@ export const CheckoutPage: React.FC = () => {
                     </>
                   ) : (
                     <>
-                      {paymentMethod === 'payfast' ? `Pay R{cartTotal.toFixed(2)} via PayFast` : `Place Order — R{cartTotal.toFixed(2)}`}
+                      {paymentMethod === 'payfast' ? `Pay R${cartTotal.toFixed(2)} via PayFast` : `Place Order — R${cartTotal.toFixed(2)}`}
                       {paymentMethod === 'payfast' ? <ExternalLink className="w-5 h-5" /> : <ShieldCheck className="w-5 h-5" />}
                     </>
                   )}

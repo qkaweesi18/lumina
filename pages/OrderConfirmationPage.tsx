@@ -97,7 +97,7 @@ export const OrderConfirmationPage: React.FC = () => {
                 { label: 'Branch Code', value: '051001' },
                 { label: 'Account Type', value: 'Cheque Account' },
                 { label: 'Reference', value: orderNumber },
-                { label: 'Amount', value: `R{order.total.toFixed(2)}` },
+                { label: 'Amount', value: `R${order.total.toFixed(2)}` },
               ].map(({ label, value }) => (
                 <div key={label} className="flex items-center justify-between py-2 border-b border-gray-50 last:border-0">
                   <span className="text-sm text-gray-500">{label}</span>
