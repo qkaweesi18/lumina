@@ -10,7 +10,6 @@ interface CartSidebarProps {
 
 export const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose }) => {
   const { cart, removeFromCart, updateQuantity, cartTotal } = useShop();
-  const [isClosing, setIsClosing] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
 
@@ -33,11 +32,7 @@ export const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose }) => 
   }, [isOpen]);
 
   const handleClose = () => {
-    setIsClosing(true);
-    setTimeout(() => {
-      setIsClosing(false);
-      onClose();
-    }, 300);
+    onClose();
   };
 
   if (!mounted) return null;
