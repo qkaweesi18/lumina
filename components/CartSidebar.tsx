@@ -12,13 +12,21 @@ export const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose }) => 
   const { cart, removeFromCart, updateQuantity, cartTotal } = useShop();
   const [isClosing, setIsClosing] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
       setMounted(true);
       document.body.style.overflow = 'hidden';
+      // Small delay so the browser renders the closed state first, then animates open
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setVisible(true);
+        });
+      });
     } else {
-      const timer = setTimeout(() => setMounted(false), 500);
+      setVisible(false);
+      const timer = setTimeout(() => setMounted(false), 300);
       document.body.style.overflow = 'unset';
       return () => clearTimeout(timer);
     }
@@ -38,14 +46,13 @@ export const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose }) => 
     <div className="fixed inset-0 z-50 overflow-hidden">
       {/* Backdrop */}
       <div
-        className={`absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-300 ${isOpen && !isClosing ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+        className={`absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-300 ${visible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
         onClick={handleClose}
       />
 
       <div className="absolute inset-y-0 right-0 max-w-full flex pointer-events-none">
         <div
-          className={`pointer-events-auto w-screen max-w-md transform transition-transform duration-300 ease-out bg-white shadow-2xl flex flex-col h-full ${isOpen && !isClosing ? 'translate-x-0' : 'translate-x-full'
-            }`}
+          className={`pointer-events-auto w-screen max-w-md transform transition-transform duration-300 ease-out bg-white shadow-2xl flex flex-col h-full ${visible ? 'translate-x-0' : 'translate-x-full'}`}
         >
 
           {/* Header */}
