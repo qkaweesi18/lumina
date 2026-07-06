@@ -234,8 +234,8 @@ export const CheckoutPage: React.FC = () => {
   return (
     <div className="bg-gray-50 min-h-screen pb-20 animate-fade-in">
       <div className="max-w-7xl mx-auto px-4 pt-20 sm:px-6 lg:px-8">
-        <Link to="/" className="text-gray-500 hover:text-black flex items-center text-sm font-medium mb-8 transition-colors group w-fit">
-          <ChevronLeft className="w-4 h-4 mr-1 group-hover:-translate-x-1 transition-transform" /> Back to Shop
+        <Link to="/" className="inline-flex items-center gap-2 px-5 py-3 -ml-5 text-gray-600 hover:text-black hover:bg-gray-100 active:bg-gray-200 rounded-xl text-base font-medium mb-8 transition-all group min-h-[44px] w-fit">
+          <ChevronLeft className="w-6 h-6 group-hover:-translate-x-1 transition-transform" /> Back to Shop
         </Link>
 
         {/* Guest Notice */}

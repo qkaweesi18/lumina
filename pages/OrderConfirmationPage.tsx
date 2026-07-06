@@ -38,7 +38,7 @@ export const OrderConfirmationPage: React.FC = () => {
             to="/"
             className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-white bg-black hover:bg-gray-800 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
           >
-            <ArrowLeft className="w-4 h-4 mr-2" /> Back to Shop
+            <ArrowLeft className="w-5 h-5 mr-2" /> Back to Shop
           </Link>
         </div>
       </div>
