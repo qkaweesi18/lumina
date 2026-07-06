@@ -38,14 +38,14 @@ export const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose }) => 
     <div className="fixed inset-0 z-50 overflow-hidden">
       {/* Backdrop */}
       <div
-        className={`absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-500 ${isOpen && !isClosing ? 'opacity-100' : 'opacity-0'
+        className={`absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-300 ${isOpen && !isClosing ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
           }`}
         onClick={handleClose}
       />
 
       <div className="absolute inset-y-0 right-0 max-w-full flex pointer-events-none">
         <div
-          className={`pointer-events-auto w-screen max-w-md transform transition-transform duration-500 cubic-bezier(0.25, 1, 0.5, 1) bg-white shadow-2xl flex flex-col h-full ${isOpen && !isClosing ? 'translate-x-0' : 'translate-x-full'
+          className={`pointer-events-auto w-screen max-w-md transform transition-transform duration-300 ease-out bg-white shadow-2xl flex flex-col h-full ${isOpen && !isClosing ? 'translate-x-0' : 'translate-x-full'
             }`}
         >
 
@@ -91,8 +91,7 @@ export const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose }) => 
                 {cart.map((item, index) => (
                   <li
                     key={item.id}
-                    className="flex py-2 animate-slide-in-right"
-                    style={{ animationDelay: `${index * 0.05}s` }}
+                    className="flex py-2"
                   >
                     <div className="h-28 w-24 flex-shrink-0 overflow-hidden rounded-xl border border-gray-100 bg-gray-50">
                       <img
