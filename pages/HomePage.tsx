@@ -122,7 +122,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* Main Content */}
-      <main id="collection" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <main id="collection" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-16" style={{ scrollMarginTop: '80px' }}>
 
         {/* Section Header */}
         <div className="text-center mb-12">
