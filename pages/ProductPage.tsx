@@ -153,7 +153,7 @@ export const ProductPage: React.FC = () => {
             </div>
 
             {/* Price */}
-            <p className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">${product.price.toFixed(2)}</p>
+            <p className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">R{product.price.toFixed(2)}</p>
 
             {/* Description */}
             <p className="text-base text-gray-600 leading-relaxed mb-6 max-w-lg">{product.description}</p>

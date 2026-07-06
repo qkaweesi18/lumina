@@ -110,7 +110,7 @@ export const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose }) => 
                               {item.name}
                             </Link>
                           </h3>
-                          <p className="whitespace-nowrap">${(item.price * item.quantity).toFixed(2)}</p>
+                          <p className="whitespace-nowrap">R{(item.price * item.quantity).toFixed(2)}</p>
                         </div>
                         <p className="mt-1 text-sm text-gray-500">{item.category}</p>
                       </div>
@@ -155,7 +155,7 @@ export const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose }) => 
               <div className="space-y-3 mb-6">
                 <div className="flex justify-between text-base text-gray-500">
                   <p>Subtotal</p>
-                  <p>${cartTotal.toFixed(2)}</p>
+                  <p>R{cartTotal.toFixed(2)}</p>
                 </div>
                 <div className="flex justify-between text-base text-gray-500">
                   <p>Shipping</p>
@@ -163,7 +163,7 @@ export const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose }) => 
                 </div>
                 <div className="flex justify-between text-lg font-bold text-gray-900 pt-3 border-t border-gray-200">
                   <p>Total</p>
-                  <p>${cartTotal.toFixed(2)}</p>
+                  <p>R{cartTotal.toFixed(2)}</p>
                 </div>
               </div>
 

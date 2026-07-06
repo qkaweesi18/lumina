@@ -27,7 +27,18 @@ const ShopContext = createContext<ShopContextType | undefined>(undefined);
 export const ShopProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [products, setProducts] = useState<Product[]>(() => {
     const saved = localStorage.getItem('lumina_products');
-    return saved ? JSON.parse(saved) : INITIAL_PRODUCTS;
+    if (saved) {
+      const parsed: Product[] = JSON.parse(saved);
+      // Merge fresh images from INITIAL_PRODUCTS if missing in saved data
+      return parsed.map(p => {
+        const fresh = INITIAL_PRODUCTS.find(fp => fp.id === p.id);
+        if (fresh && (!p.images || p.images.length === 0) && fresh.images && fresh.images.length > 0) {
+          return { ...p, images: fresh.images, image: fresh.image };
+        }
+        return p;
+      });
+    }
+    return INITIAL_PRODUCTS;
   });
 
   const [cart, setCart] = useState<CartItem[]>(() => {

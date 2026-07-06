@@ -68,6 +68,10 @@ export const HomePage: React.FC = () => {
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up stagger-3 opacity-0" style={{ animationFillMode: 'forwards' }}>
             <a
               href="#collection"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('collection')?.scrollIntoView({ behavior: 'smooth' });
+              }}
               className="group inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-medium hover:bg-gray-100 transition-all hover:gap-4 btn-shine shadow-lg hover:shadow-xl"
             >
               Explore Collection
@@ -96,7 +100,7 @@ export const HomePage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               { icon: Package, title: 'Premium Quality', desc: 'Handpicked products that meet our high standards' },
-              { icon: Truck, title: 'Free Shipping', desc: 'On all orders over $150 worldwide' },
+              { icon: Truck, title: 'Free Shipping', desc: 'On all orders over R150 worldwide' },
               { icon: Shield, title: 'Secure Checkout', desc: 'Your data is protected with SSL encryption' },
             ].map((feature, index) => (
               <div

@@ -265,7 +265,7 @@ export const CheckoutPage: React.FC = () => {
                     <div className="ml-4 flex flex-1 flex-col justify-center">
                       <div className="flex justify-between text-sm font-medium text-gray-900">
                         <h3 className="line-clamp-1">{item.name}</h3>
-                        <p>${(item.price * item.quantity).toFixed(2)}</p>
+                        <p>R{(item.price * item.quantity).toFixed(2)}</p>
                       </div>
                       <p className="mt-1 text-xs text-gray-500">{item.category} · Qty {item.quantity}</p>
                     </div>
@@ -276,7 +276,7 @@ export const CheckoutPage: React.FC = () => {
               <div className="border-t border-gray-100 pt-6 space-y-4">
                 <div className="flex items-center justify-between text-sm">
                   <p className="text-gray-600">Subtotal</p>
-                  <p className="font-medium text-gray-900">${cartTotal.toFixed(2)}</p>
+                  <p className="font-medium text-gray-900">R{cartTotal.toFixed(2)}</p>
                 </div>
                 <div className="flex items-center justify-between text-sm">
                   <p className="text-gray-600">Shipping</p>
@@ -284,7 +284,7 @@ export const CheckoutPage: React.FC = () => {
                 </div>
                 <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                   <p className="text-base font-bold text-gray-900">Total</p>
-                  <p className="text-xl font-bold text-gray-900">${cartTotal.toFixed(2)}</p>
+                  <p className="text-xl font-bold text-gray-900">R{cartTotal.toFixed(2)}</p>
                 </div>
               </div>
 
@@ -424,7 +424,7 @@ export const CheckoutPage: React.FC = () => {
                         ))}
                         <div className="flex items-center justify-between py-1.5">
                           <span className="text-xs text-gray-500">Amount</span>
-                          <span className="text-sm font-mono font-bold text-green-600">${cartTotal.toFixed(2)}</span>
+                          <span className="text-sm font-mono font-bold text-green-600">R{cartTotal.toFixed(2)}</span>
                         </div>
                       </div>
                     </div>
@@ -497,7 +497,7 @@ export const CheckoutPage: React.FC = () => {
                     </>
                   ) : (
                     <>
-                      {paymentMethod === 'payfast' ? `Pay $${cartTotal.toFixed(2)} via PayFast` : `Place Order — $${cartTotal.toFixed(2)}`}
+                      {paymentMethod === 'payfast' ? `Pay R{cartTotal.toFixed(2)} via PayFast` : `Place Order — R{cartTotal.toFixed(2)}`}
                       {paymentMethod === 'payfast' ? <ExternalLink className="w-5 h-5" /> : <ShieldCheck className="w-5 h-5" />}
                     </>
                   )}

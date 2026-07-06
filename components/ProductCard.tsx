@@ -130,7 +130,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         {/* Price & Mobile Add Button */}
         <div className="flex items-center justify-between pt-3 border-t border-gray-100">
           <div>
-            <p className="text-lg font-bold text-gray-900">${product.price.toFixed(2)}</p>
+            <p className="text-lg font-bold text-gray-900">R{product.price.toFixed(2)}</p>
             <p className="text-xs text-gray-400">Free shipping</p>
           </div>
 

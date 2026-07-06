@@ -82,7 +82,7 @@ export const OrderConfirmationPage: React.FC = () => {
               <div>
                 <h3 className="font-bold text-amber-900 text-lg">Awaiting Bank Transfer</h3>
                 <p className="text-sm text-amber-700 mt-1">
-                  Please transfer <strong className="text-amber-900">${order.total.toFixed(2)}</strong> to the bank account below.
+                  Please transfer <strong className="text-amber-900">R{order.total.toFixed(2)}</strong> to the bank account below.
                   Your order will be shipped once payment is confirmed.
                 </p>
               </div>
@@ -97,7 +97,7 @@ export const OrderConfirmationPage: React.FC = () => {
                 { label: 'Branch Code', value: '051001' },
                 { label: 'Account Type', value: 'Cheque Account' },
                 { label: 'Reference', value: orderNumber },
-                { label: 'Amount', value: `$${order.total.toFixed(2)}` },
+                { label: 'Amount', value: `R{order.total.toFixed(2)}` },
               ].map(({ label, value }) => (
                 <div key={label} className="flex items-center justify-between py-2 border-b border-gray-50 last:border-0">
                   <span className="text-sm text-gray-500">{label}</span>
@@ -172,7 +172,7 @@ export const OrderConfirmationPage: React.FC = () => {
                 <div className="ml-4 flex flex-1 flex-col justify-center">
                   <div className="flex justify-between text-sm font-medium text-gray-900">
                     <h4 className="line-clamp-1">{item.name}</h4>
-                    <p>${(item.price * item.quantity).toFixed(2)}</p>
+                    <p>R{(item.price * item.quantity).toFixed(2)}</p>
                   </div>
                   <p className="mt-1 text-xs text-gray-500">{item.category} · Qty {item.quantity}</p>
                 </div>
@@ -182,7 +182,7 @@ export const OrderConfirmationPage: React.FC = () => {
           <div className="border-t border-gray-100 mt-4 pt-4">
             <div className="flex justify-between text-lg font-bold text-gray-900">
               <span>Total</span>
-              <span>${order.total.toFixed(2)}</span>
+              <span>R{order.total.toFixed(2)}</span>
             </div>
           </div>
         </div>

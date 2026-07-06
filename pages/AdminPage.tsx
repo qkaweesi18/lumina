@@ -426,7 +426,7 @@ export const AdminPage: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-sm text-gray-500">Revenue</p>
-                  <p className="text-2xl font-bold text-gray-900">${totalRevenue.toFixed(2)}</p>
+                  <p className="text-2xl font-bold text-gray-900">R{totalRevenue.toFixed(2)}</p>
                 </div>
               </div>
             </div>
@@ -532,7 +532,7 @@ export const AdminPage: React.FC = () => {
 
                             {/* Total */}
                             <span className="text-sm font-bold text-gray-900 w-20 text-right">
-                              ${order.total.toFixed(2)}
+                              R{order.total.toFixed(2)}
                             </span>
                           </div>
                         </div>
@@ -589,17 +589,17 @@ export const AdminPage: React.FC = () => {
                                     </div>
                                     <div className="flex-1 min-w-0">
                                       <p className="text-sm font-medium text-gray-900 truncate">{item.name}</p>
-                                      <p className="text-xs text-gray-500">Qty: {item.quantity} × ${item.price.toFixed(2)}</p>
+                                      <p className="text-xs text-gray-500">Qty: {item.quantity} × R{item.price.toFixed(2)}</p>
                                     </div>
                                     <p className="text-sm font-medium text-gray-900">
-                                      ${(item.price * item.quantity).toFixed(2)}
+                                      R{(item.price * item.quantity).toFixed(2)}
                                     </p>
                                   </div>
                                 ))}
                                 <div className="border-t border-gray-200 pt-2 mt-2">
                                   <div className="flex justify-between text-sm">
                                     <span className="text-gray-500">Total</span>
-                                    <span className="font-bold text-gray-900">${order.total.toFixed(2)}</span>
+                                    <span className="font-bold text-gray-900">R{order.total.toFixed(2)}</span>
                                   </div>
                                 </div>
                               </div>
@@ -848,7 +848,7 @@ export const AdminPage: React.FC = () => {
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium text-gray-900 truncate">{product.name}</p>
                         <p className="text-sm text-gray-500 truncate">{product.category}</p>
-                        <p className="text-sm font-bold text-gray-900">${product.price.toFixed(2)}</p>
+                        <p className="text-sm font-bold text-gray-900">R{product.price.toFixed(2)}</p>
                       </div>
                       <div className="flex gap-2">
                         <button onClick={() => startEdit(product)}
