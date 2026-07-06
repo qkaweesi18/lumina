@@ -49,7 +49,7 @@ export const OrderConfirmationPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 pb-20 animate-fade-in">
-      <div className="max-w-3xl mx-auto px-4 pt-10 sm:px-6 lg:px-8">
+      <div className="max-w-3xl mx-auto px-4 pt-20 sm:px-6 lg:px-8">
 
         {/* Success Header */}
         <div className="text-center mb-10">

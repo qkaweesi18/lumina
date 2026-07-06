@@ -233,7 +233,7 @@ export const CheckoutPage: React.FC = () => {
 
   return (
     <div className="bg-gray-50 min-h-screen pb-20 animate-fade-in">
-      <div className="max-w-7xl mx-auto px-4 pt-10 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 pt-20 sm:px-6 lg:px-8">
         <Link to="/" className="text-gray-500 hover:text-black flex items-center text-sm font-medium mb-8 transition-colors group w-fit">
           <ChevronLeft className="w-4 h-4 mr-1 group-hover:-translate-x-1 transition-transform" /> Back to Shop
         </Link>
@@ -251,7 +251,7 @@ export const CheckoutPage: React.FC = () => {
 
           {/* Order Summary (Right side on desktop) */}
           <section className="lg:col-span-5 lg:order-last mb-8 lg:mb-0 animate-fade-in-up stagger-2">
-            <div className="bg-white shadow-xl shadow-gray-200/50 rounded-2xl p-6 sticky top-24">
+            <div className="bg-white shadow-xl shadow-gray-200/50 rounded-2xl p-6 lg:sticky lg:top-24">
               <h2 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
                 Order Summary
                 <span className="text-xs font-normal text-gray-500 bg-gray-100 px-2 py-1 rounded-full">{cart.length} items</span>
