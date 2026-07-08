@@ -14,32 +14,48 @@ import { LearnMorePage } from './pages/LearnMorePage';
 // Saves & restores scroll position when navigating between pages
 const ScrollRestoration: React.FC = () => {
   const location = useLocation();
-  const lastPath = useRef(location.pathname + location.hash);
-  const isBack = useRef(false);
+  const prevPath = useRef(location.pathname + location.hash);
+  const savedScrollRef = useRef<number>(0);
 
   useEffect(() => {
-    // Save scroll position before navigating away
-    const handleBeforeUnload = () => {
-      sessionStorage.setItem(`scroll_${lastPath.current}`, String(window.scrollY));
+    // Intercept ALL clicks on internal links to save scroll position BEFORE React Router processes
+    const handleClick = (e: MouseEvent) => {
+      const target = (e.target as HTMLElement).closest('a');
+      if (target && target.getAttribute('href')?.startsWith('#/')) {
+        // Save immediately — this runs BEFORE React Router's location change
+        const currentKey = `scroll_${location.pathname}${location.hash}`;
+        sessionStorage.setItem(currentKey, String(window.scrollY));
+        savedScrollRef.current = window.scrollY;
+      }
     };
-    window.addEventListener('beforeunload', handleBeforeUnload);
+    document.addEventListener('click', handleClick, true);
 
-    // Also save on route change
+    // Also handle browser back/forward buttons
+    const handlePopState = () => {
+      const currentKey = `scroll_${location.pathname}${location.hash}`;
+      sessionStorage.setItem(currentKey, String(window.scrollY));
+      savedScrollRef.current = window.scrollY;
+    };
+    window.addEventListener('popstate', handlePopState);
+
     return () => {
-      sessionStorage.setItem(`scroll_${lastPath.current}`, String(window.scrollY));
-      window.removeEventListener('beforeunload', handleBeforeUnload);
+      document.removeEventListener('click', handleClick, true);
+      window.removeEventListener('popstate', handlePopState);
     };
-  }, []);
+  }, [location.pathname, location.hash]);
 
   useEffect(() => {
-    const savedKey = `scroll_${location.pathname}${location.hash}`;
-    const saved = sessionStorage.getItem(savedKey);
+    // Check if we already saved a position (from click interception)
+    const newKey = `scroll_${location.pathname}${location.hash}`;
+    const saved = sessionStorage.getItem(newKey);
     if (saved) {
       window.scrollTo(0, parseInt(saved, 10));
     } else {
       window.scrollTo(0, 0);
     }
-    lastPath.current = location.pathname + location.hash;
+
+    // Update previous path for next navigation
+    prevPath.current = location.pathname + location.hash;
   }, [location.pathname, location.hash]);
 
   return null;
