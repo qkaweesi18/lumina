@@ -178,98 +178,97 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCart }) => {
             </div>
           </div>
         </div>
+      </nav>
 
-        {/* Mobile Menu Overlay */}
-        <div
-          className="md:hidden"
-          style={{
-            position: 'fixed',
-            inset: 0,
-            zIndex: 40,
-            backgroundColor: 'rgba(0, 0, 0, 0.8)',
-            opacity: isMobileMenuOpen ? 1 : 0,
-            visibility: isMobileMenuOpen ? 'visible' : 'hidden',
-            transition: 'opacity 300ms, visibility 300ms',
-          }}
-          onClick={() => setIsMobileMenuOpen(false)}
-        />
+      {/* Mobile Menu Overlay */}
+      <div
+        className="md:hidden"
+        style={{
+          position: 'fixed',
+          inset: 0,
+          zIndex: 40,
+          backgroundColor: 'rgba(0, 0, 0, 0.8)',
+          opacity: isMobileMenuOpen ? 1 : 0,
+          visibility: isMobileMenuOpen ? 'visible' : 'hidden',
+          transition: 'opacity 300ms, visibility 300ms',
+        }}
+        onClick={() => setIsMobileMenuOpen(false)}
+      />
 
-        {/* Mobile Menu Panel */}
-        <div
-          className={`fixed inset-y-0 right-0 z-50 w-full max-w-xs bg-white shadow-2xl transform transition-transform duration-300 ease-in-out md:hidden ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-            }`}
-        >
-          <div className="flex items-center justify-between p-4 border-b border-gray-100">
-            <span className="text-lg font-bold">Menu</span>
-            <button
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="p-2 text-gray-500 hover:bg-gray-100 rounded-full"
-            >
-              <X className="w-5 h-5" />
-            </button>
-          </div>
+      {/* Mobile Menu Panel */}
+      <div
+        className={`fixed inset-y-0 right-0 z-50 w-full max-w-xs bg-white shadow-2xl transform transition-transform duration-300 ease-in-out md:hidden ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+      >
+        <div className="flex items-center justify-between p-4 border-b border-gray-100">
+          <span className="text-lg font-bold">Menu</span>
+          <button
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="p-2 text-gray-500 hover:bg-gray-100 rounded-full"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
 
-          <div className="px-4 py-6 space-y-4">
-            <Link
-              to="/"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium text-gray-700 hover:text-black hover:bg-gray-50 transition-all"
-            >
-              <Store className="w-5 h-5" /> Shop
-            </Link>
+        <div className="px-4 py-6 space-y-4">
+          <Link
+            to="/"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium text-gray-700 hover:text-black hover:bg-gray-50 transition-all"
+          >
+            <Store className="w-5 h-5" /> Shop
+          </Link>
 
-            <button
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                navigate('/admin');
-              }}
-              className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium text-gray-700 hover:text-black hover:bg-gray-50 transition-all"
-            >
-              <LayoutDashboard className="w-5 h-5" />
-              {isAdminMode ? 'Exit Seller Mode' : 'Sell Your Products'}
-            </button>
+          <button
+            onClick={() => {
+              setIsMobileMenuOpen(false);
+              navigate('/admin');
+            }}
+            className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium text-gray-700 hover:text-black hover:bg-gray-50 transition-all"
+          >
+            <LayoutDashboard className="w-5 h-5" />
+            {isAdminMode ? 'Exit Seller Mode' : 'Sell Your Products'}
+          </button>
 
-            <div className="border-t border-gray-100 my-4 pt-4">
-              {user ? (
-                <>
-                  <div className="flex items-center gap-3 px-4 py-3 mb-2">
-                    {user.photoURL ? (
-                      <img src={user.photoURL} alt={user.displayName || 'User'} className="w-10 h-10 rounded-full border border-gray-200" />
-                    ) : (
-                      <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
-                        <User className="w-5 h-5 text-gray-500" />
-                      </div>
-                    )}
-                    <div className="overflow-hidden">
-                      <p className="text-sm font-medium text-gray-900 truncate">{user.displayName || 'User'}</p>
-                      <p className="text-xs text-gray-500 truncate">{user.email}</p>
+          <div className="border-t border-gray-100 my-4 pt-4">
+            {user ? (
+              <>
+                <div className="flex items-center gap-3 px-4 py-3 mb-2">
+                  {user.photoURL ? (
+                    <img src={user.photoURL} alt={user.displayName || 'User'} className="w-10 h-10 rounded-full border border-gray-200" />
+                  ) : (
+                    <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+                      <User className="w-5 h-5 text-gray-500" />
                     </div>
+                  )}
+                  <div className="overflow-hidden">
+                    <p className="text-sm font-medium text-gray-900 truncate">{user.displayName || 'User'}</p>
+                    <p className="text-xs text-gray-500 truncate">{user.email}</p>
                   </div>
-                  <button
-                    onClick={() => {
-                      logout();
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium text-red-600 hover:bg-red-50 transition-all"
-                  >
-                    <LogOut className="w-5 h-5" /> Sign Out
-                  </button>
-                </>
-              ) : (
+                </div>
                 <button
                   onClick={() => {
-                    setIsLoginModalOpen(true);
+                    logout();
                     setIsMobileMenuOpen(false);
                   }}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-base font-medium text-white bg-black hover:bg-gray-800 transition-all shadow-lg"
+                  className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium text-red-600 hover:bg-red-50 transition-all"
                 >
-                  Login / Sign Up
+                  <LogOut className="w-5 h-5" /> Sign Out
                 </button>
-              )}
-            </div>
+              </>
+            ) : (
+              <button
+                onClick={() => {
+                  setIsLoginModalOpen(true);
+                  setIsMobileMenuOpen(false);
+                }}
+                className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-base font-medium text-white bg-black hover:bg-gray-800 transition-all shadow-lg"
+              >
+                Login / Sign Up
+              </button>
+            )}
           </div>
         </div>
-      </nav>
+      </div>
 
       <LoginModal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} />
     </>
