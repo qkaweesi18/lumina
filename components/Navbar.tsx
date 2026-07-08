@@ -181,7 +181,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCart }) => {
 
         {/* Mobile Menu Overlay */}
         <div
-          className={`fixed inset-0 z-40 bg-gray-900/50 backdrop-blur-sm transition-opacity duration-300 md:hidden ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+          className={`fixed inset-0 z-40 bg-black/70 backdrop-blur-md transition-opacity duration-300 md:hidden ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
             }`}
           onClick={() => setIsMobileMenuOpen(false)}
         />
