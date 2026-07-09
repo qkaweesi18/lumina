@@ -1,0 +1,32 @@
+{
+  "1": {
+    "name": "Minimalist Leather Tote",
+    "description": "Handcrafted from genuine full-grain leather. A versatile companion for your daily commute or weekend getaway.",
+    "image": "https://picsum.photos/id/20/800/800"
+  },
+  "2": {
+    "name": "Ceramic Pour-Over Set",
+    "description": "Experience the ritual of coffee brewing with this matte black ceramic set. Designed for optimal heat retention.",
+    "image": "https://picsum.photos/id/30/800/800"
+  },
+  "3": {
+    "name": "Analog Desk Clock",
+    "description": "Stripped back to the essentials. A silent sweep movement mechanism housed in a solid oak frame.",
+    "image": "https://picsum.photos/id/175/800/800"
+  },
+  "4": {
+    "name": "Merino Wool Scarf",
+    "description": "Ultra-soft, ethically sourced merino wool. Keeps you warm without the bulk.",
+    "image": "https://picsum.photos/id/103/800/800"
+  },
+  "5": {
+    "name": "Graphite Sketch Set",
+    "description": "Professional grade graphite pencils for the aspiring artist. Encased in a reusable tin box.",
+    "image": "https://picsum.photos/id/24/800/800"
+  },
+  "6": {
+    "name": "Linen Bed Sheets",
+    "description": "Breathable, stone-washed linen that gets softer with every wash. Cool in summer, warm in winter.",
+    "image": "https://images.unsplash.com/photo-1616627547584-bf28cee262db?w=800&h=800&fit=crop"
+  }
+}

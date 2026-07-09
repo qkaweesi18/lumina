@@ -22,6 +22,54 @@
     <meta name="twitter:title" content="Lumina Store" />
     <meta name="twitter:description" content="Minimalist living, simplified. Home goods, accessories, apparel, and art — curated for modern living." />
     <meta name="twitter:image" content="/og-default.png" />
+    <script>
+      // Update OG tags based on URL path — runs BEFORE React loads
+      // This ensures crawlers (WhatsApp, Facebook, Twitter) see product-specific previews
+      (function() {
+        var path = window.location.pathname;
+        var match = path.match(/^\/product\/([^\/]+)/);
+        if (!match) return;
+
+        var pid = match[1];
+        // Product data map (name, description, image)
+        var products = {
+          '1': { name: 'Minimalist Leather Tote', desc: 'Handcrafted from genuine full-grain leather. A versatile companion for your daily commute or weekend getaway.', img: 'https://picsum.photos/id/20/800/800' },
+          '2': { name: 'Ceramic Pour-Over Set', desc: 'Experience the ritual of coffee brewing with this matte black ceramic set. Designed for optimal heat retention.', img: 'https://picsum.photos/id/30/800/800' },
+          '3': { name: 'Analog Desk Clock', desc: 'Stripped back to the essentials. A silent sweep movement mechanism housed in a solid oak frame.', img: 'https://picsum.photos/id/175/800/800' },
+          '4': { name: 'Merino Wool Scarf', desc: 'Ultra-soft, ethically sourced merino wool. Keeps you warm without the bulk.', img: 'https://picsum.photos/id/103/800/800' },
+          '5': { name: 'Graphite Sketch Set', desc: 'Professional grade graphite pencils for the aspiring artist. Encased in a reusable tin box.', img: 'https://picsum.photos/id/24/800/800' },
+          '6': { name: 'Linen Bed Sheets', desc: 'Breathable, stone-washed linen that gets softer with every wash. Cool in summer, warm in winter.', img: 'https://images.unsplash.com/photo-1616627547584-bf28cee262db?w=800&h=800&fit=crop' }
+        };
+
+        var p = products[pid];
+        if (!p) return;
+
+        var base = window.location.origin;
+        var title = p.name + ' | Lumina Store';
+        var url = base + '/product/' + pid;
+
+        document.title = title;
+
+        function setMeta(prop, val) {
+          var el = document.querySelector('meta[property="' + prop + '"]');
+          if (el) el.setAttribute('content', val);
+        }
+        function setMetaName(name, val) {
+          var el = document.querySelector('meta[name="' + name + '"]');
+          if (el) el.setAttribute('content', val);
+        }
+
+        setMeta('og:type', 'product');
+        setMeta('og:title', title);
+        setMeta('og:description', p.desc);
+        setMeta('og:image', p.img);
+        setMeta('og:url', url);
+        setMetaName('twitter:card', 'summary_large_image');
+        setMetaName('twitter:title', title);
+        setMetaName('twitter:description', p.desc);
+        setMetaName('twitter:image', p.img);
+      })();
+    </script>
     <meta name="theme-color" content="#ffffff" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
