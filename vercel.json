@@ -1,6 +1,10 @@
 {
   "rewrites": [
-    { "source": "/product/:id", "destination": "/index.html" }
+    { "source": "/product/:id", "destination": "/index.html" },
+    { "source": "/order-confirmation/:id", "destination": "/index.html" },
+    { "source": "/checkout", "destination": "/index.html" },
+    { "source": "/admin", "destination": "/index.html" },
+    { "source": "/learn-more", "destination": "/index.html" }
   ],
   "headers": [
     {

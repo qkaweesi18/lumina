@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { ShopProvider } from './context/ShopContext';
 import { AuthProvider } from './context/AuthContext';
 import { Navbar } from './components/Navbar';
@@ -14,14 +14,14 @@ import { LearnMorePage } from './pages/LearnMorePage';
 // Saves & restores scroll position when navigating between pages
 const ScrollRestoration: React.FC = () => {
   const location = useLocation();
-  const prevPath = useRef(location.pathname + location.hash);
+  const prevPath = useRef(location.pathname);
   const savedScrollRef = useRef<number>(0);
 
   useEffect(() => {
     // Intercept ALL clicks on internal links to save scroll position BEFORE React Router processes
     const handleClick = (e: MouseEvent) => {
       const target = (e.target as HTMLElement).closest('a');
-      if (target && target.getAttribute('href')?.startsWith('#/')) {
+      if (target && target.getAttribute('href')?.startsWith('/') && !target.getAttribute('href')?.startsWith('//')) {
         // Save immediately — this runs BEFORE React Router's location change
         const currentKey = `scroll_${location.pathname}${location.hash}`;
         sessionStorage.setItem(currentKey, String(window.scrollY));
@@ -55,7 +55,7 @@ const ScrollRestoration: React.FC = () => {
     }
 
     // Update previous path for next navigation
-    prevPath.current = location.pathname + location.hash;
+    prevPath.current = location.pathname;
   }, [location.pathname, location.hash]);
 
   return null;

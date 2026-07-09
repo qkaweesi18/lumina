@@ -36,7 +36,7 @@ export const ProductPage: React.FC = () => {
   useEffect(() => {
     if (!product) return;
     const baseUrl = window.location.origin;
-    const productUrl = `${baseUrl}/#/product/${product.id}`;
+    const productUrl = `${baseUrl}/product/${product.id}`;
     const title = `${product.name} | Lumina Store`;
     const description = product.description.length > 160
       ? product.description.substring(0, 157) + '...'

@@ -129,8 +129,8 @@ export const CheckoutPage: React.FC = () => {
 
       // Build PayFast form data
       const payfastUrl = PAYFAST_CONFIG.useSandbox ? PAYFAST_CONFIG.sandboxUrl : PAYFAST_CONFIG.liveUrl;
-      const returnUrl = `${window.location.origin}/#/order-confirmation/${order.id}`;
-      const cancelUrl = `${window.location.origin}/#/checkout`;
+      const returnUrl = `${window.location.origin}/order-confirmation/${order.id}`;
+      const cancelUrl = `${window.location.origin}/checkout`;
       const notifyUrl = `${window.location.origin}/api/payfast-notify`; // Server-side ITN endpoint
 
       const payfastData = {
