@@ -38,9 +38,10 @@ export const ProductPage: React.FC = () => {
     const baseUrl = window.location.origin;
     const productUrl = `${baseUrl}/product/${product.id}`;
     const title = `${product.name} | Lumina Store`;
-    const description = product.description.length > 160
-      ? product.description.substring(0, 157) + '...'
-      : product.description;
+    const plainText = product.description.replace(/<[^>]*>/g, '');
+        const description = plainText.length > 160
+          ? plainText.substring(0, 157) + '...'
+          : plainText;
     const image = product.image.startsWith('http') ? product.image : `${baseUrl}${product.image}`;
 
     // Update document title
@@ -220,7 +221,7 @@ export const ProductPage: React.FC = () => {
             <p className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">R{product.price.toFixed(2)}</p>
 
             {/* Description */}
-            <p className="text-base text-gray-600 leading-relaxed mb-6 max-w-lg">{product.description}</p>
+            <div className="text-base text-gray-600 leading-relaxed mb-6 max-w-lg prose prose-sm max-w-none" dangerouslySetInnerHTML={{ __html: product.description }} />
 
             {/* Add to Cart */}
             <button
