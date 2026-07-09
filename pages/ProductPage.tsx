@@ -32,6 +32,70 @@ export const ProductPage: React.FC = () => {
     window.scrollTo(0, 0);
   }, [id]);
 
+  // Update Open Graph meta tags for social media previews
+  useEffect(() => {
+    if (!product) return;
+    const baseUrl = window.location.origin;
+    const productUrl = `${baseUrl}/#/product/${product.id}`;
+    const title = `${product.name} | Lumina Store`;
+    const description = product.description.length > 160
+      ? product.description.substring(0, 157) + '...'
+      : product.description;
+    const image = product.image.startsWith('http') ? product.image : `${baseUrl}${product.image}`;
+
+    // Update document title
+    document.title = title;
+
+    // Helper to set or create meta tag
+    const setMeta = (attr: string, value: string) => {
+      let el = document.querySelector(`meta[property="${attr}"]`) as HTMLMetaElement;
+      if (!el) {
+        el = document.createElement('meta');
+        el.setAttribute('property', attr);
+        document.head.appendChild(el);
+      }
+      el.setAttribute('content', value);
+    };
+
+    const setMetaName = (name: string, value: string) => {
+      let el = document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement;
+      if (!el) {
+        el = document.createElement('meta');
+        el.setAttribute('name', name);
+        document.head.appendChild(el);
+      }
+      el.setAttribute('content', value);
+    };
+
+    // Set OG tags
+    setMeta('og:type', 'product');
+    setMeta('og:title', title);
+    setMeta('og:description', description);
+    setMeta('og:image', image);
+    setMeta('og:url', productUrl);
+    setMeta('og:site_name', 'Lumina Store');
+
+    // Set Twitter Card tags
+    setMetaName('twitter:card', 'summary_large_image');
+    setMetaName('twitter:title', title);
+    setMetaName('twitter:description', description);
+    setMetaName('twitter:image', image);
+
+    // Cleanup: reset to defaults on unmount
+    return () => {
+      document.title = 'Lumina Store';
+      setMeta('og:type', 'website');
+      setMeta('og:title', 'Lumina Store');
+      setMeta('og:description', 'Minimalist living, simplified. Home goods, accessories, apparel, and art — curated for modern living.');
+      setMeta('og:image', '/og-default.png');
+      setMeta('og:url', baseUrl);
+      setMetaName('twitter:card', 'summary_large_image');
+      setMetaName('twitter:title', 'Lumina Store');
+      setMetaName('twitter:description', 'Minimalist living, simplified.');
+      setMetaName('twitter:image', '/og-default.png');
+    };
+  }, [product]);
+
   const averageRating = useMemo(() => {
     if (!product || !product.reviews || product.reviews.length === 0) return 0;
     const total = product.reviews.reduce((acc, review) => acc + review.rating, 0);
