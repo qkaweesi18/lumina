@@ -221,7 +221,7 @@ export const ProductPage: React.FC = () => {
             <p className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">R{product.price.toFixed(2)}</p>
 
             {/* Description */}
-            <div className="text-base text-gray-600 leading-relaxed mb-6 max-w-lg prose prose-sm max-w-none" dangerouslySetInnerHTML={{ __html: product.description }} />
+            <div className="text-base text-gray-600 leading-relaxed mb-6 max-w-lg overflow-hidden break-words prose prose-sm" dangerouslySetInnerHTML={{ __html: product.description }} />
 
             {/* Add to Cart */}
             <button
