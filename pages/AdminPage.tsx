@@ -38,6 +38,8 @@ export const AdminPage: React.FC = () => {
   const editFileInputRef = useRef<HTMLInputElement>(null);
   const [editGalleryImages, setEditGalleryImages] = useState<string[]>([]);
   const editGalleryFileInputRef = useRef<HTMLInputElement>(null);
+  const [newGalleryImages, setNewGalleryImages] = useState<string[]>([]);
+  const newGalleryFileInputRef = useRef<HTMLInputElement>(null);
 
   // Form State
   const [formData, setFormData] = useState({
@@ -162,6 +164,25 @@ export const AdminPage: React.FC = () => {
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
+  const handleNewGalleryUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files) return;
+    Array.from(files).forEach(file => {
+      if (!file.type.startsWith('image/')) return;
+      if (file.size > 5 * 1024 * 1024) return;
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const base64 = event.target?.result as string;
+        setNewGalleryImages(prev => [...prev, base64]);
+      };
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const removeNewGalleryImage = (index: number) => {
+    setNewGalleryImages(prev => prev.filter((_, i) => i !== index));
+  };
+
   // Edit product handlers
   const startEdit = (product: Product) => {
     setEditingProduct(product);
@@ -252,14 +273,17 @@ export const AdminPage: React.FC = () => {
       category: formData.category || 'Uncategorized',
       image: formData.image || `https://picsum.photos/seed/${Date.now()}/800/800`,
       description: formData.description,
-      reviews: []
-    };
+      reviews: [],
+      images: newGalleryImages
+    } as Product;
     addProduct(newProduct);
     setSuccessMessage('Product added successfully!');
     setTimeout(() => setSuccessMessage(''), 3000);
     setFormData({ name: '', price: '', category: '', image: '', description: '', keywords: '' });
     setImagePreview(null);
+    setNewGalleryImages([]);
     if (fileInputRef.current) fileInputRef.current.value = '';
+    if (newGalleryFileInputRef.current) newGalleryFileInputRef.current.value = '';
   };
 
   const handleDelete = (id: string) => {
@@ -791,6 +815,36 @@ export const AdminPage: React.FC = () => {
                       placeholder="Or paste image URL here"
                     />
                   </div>
+                </div>
+
+                {/* Gallery Images for New Product */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Gallery Images (Optional)</label>
+                  <p className="text-xs text-gray-400 mb-3">Additional images that appear as clickable thumbnails on the product page.</p>
+
+                  {/* Gallery Preview Grid */}
+                  {newGalleryImages.length > 0 && (
+                    <div className="grid grid-cols-4 gap-2 mb-3">
+                      {newGalleryImages.map((img, idx) => (
+                        <div key={idx} className="relative aspect-square">
+                          <img src={img} alt={`Gallery ${idx + 1}`} className="w-full h-full object-cover rounded-lg border border-gray-200" />
+                          <button type="button" onClick={() => removeNewGalleryImage(idx)}
+                            className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors shadow-md">
+                            <X className="w-3 h-3" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Upload Button */}
+                  <input ref={newGalleryFileInputRef} type="file" accept="image/*" multiple onChange={handleNewGalleryUpload} className="hidden" id="new-gallery-upload" />
+                  <label htmlFor="new-gallery-upload"
+                    className="cursor-pointer inline-flex items-center gap-2 px-4 py-2.5 bg-gray-100 border border-gray-200 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200 hover:border-gray-300 transition-all">
+                    <Upload className="w-4 h-4" />
+                    Add Gallery Images
+                  </label>
+                  <span className="text-xs text-gray-400 ml-2">Select multiple files at once</span>
                 </div>
 
                 {/* AI Section */}
