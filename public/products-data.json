@@ -1,0 +1,50 @@
+[
+  {
+    "id": "1",
+    "name": "Minimalist Leather Tote",
+    "price": 120,
+    "description": "Handcrafted from genuine full-grain leather. A versatile companion for your daily commute or weekend getaway.",
+    "image": "https://picsum.photos/id/20/800/800",
+    "category": "Accessories"
+  },
+  {
+    "id": "2",
+    "name": "Ceramic Pour-Over Set",
+    "price": 45,
+    "description": "Experience the ritual of coffee brewing with this matte black ceramic set. Designed for optimal heat retention.",
+    "image": "https://picsum.photos/id/30/800/800",
+    "category": "Home"
+  },
+  {
+    "id": "3",
+    "name": "Analog Desk Clock",
+    "price": 85,
+    "description": "Stripped back to the essentials. A silent sweep movement mechanism housed in a solid oak frame.",
+    "image": "https://picsum.photos/id/175/800/800",
+    "category": "Home"
+  },
+  {
+    "id": "4",
+    "name": "Merino Wool Scarf",
+    "price": 60,
+    "description": "Ultra-soft, ethically sourced merino wool. Keeps you warm without the bulk.",
+    "image": "https://picsum.photos/id/103/800/800",
+    "category": "Apparel"
+  },
+  {
+    "id": "5",
+    "name": "Graphite Sketch Set",
+    "price": 25,
+    "description": "Professional grade graphite pencils for the aspiring artist. Encased in a reusable tin box.",
+    "image": "https://picsum.photos/id/24/800/800",
+    "category": "Art"
+  },
+  {
+    "id": "6",
+    "name": "Linen Bed Sheets",
+    "price": 150,
+    "description": "Breathable, stone-washed linen that gets softer with every wash. Cool in summer, warm in winter.",
+    "image": "https://images.unsplash.com/photo-1616627547584-bf28cee262db?w=800&h=800&fit=crop",
+    "category": "Home"
+  }
+]

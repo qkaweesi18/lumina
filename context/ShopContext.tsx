@@ -56,6 +56,12 @@ export const ShopProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   // Persistence effects
   useEffect(() => {
     localStorage.setItem('lumina_products', JSON.stringify(products));
+    // Sync to server for OG previews (fire and forget)
+    fetch('/api/products', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(products),
+    }).catch(() => {});
   }, [products]);
 
   useEffect(() => {
